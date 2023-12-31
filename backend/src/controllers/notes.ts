@@ -59,8 +59,6 @@ export const createNote: RequestHandler<
   }
 };
 
-// start update and delete notes 2:21:40
-
 interface UpdateNoteParams {
   noteId: string;
 }
