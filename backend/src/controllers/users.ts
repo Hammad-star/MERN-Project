@@ -10,14 +10,14 @@ interface SignUpBody {
 }
 
 export const getAuthenicatedUser: RequestHandler = async (req, res, next) => {
-  const authentecatedUserId = req.session.userId;
+  // const authentecatedUserId = req.session.userId;
 
   try {
-    if (!authentecatedUserId) {
-      throw createHttpError(401, "User not authenticated");
-    }
+    // if (!authentecatedUserId) {
+    //   throw createHttpError(401, "User not authenticated");
+    // }
 
-    const user = await UserModel.findById(authentecatedUserId)
+    const user = await UserModel.findById(req.session.userId)
       .select("+email")
       .exec();
     res.status(200).json(user);
