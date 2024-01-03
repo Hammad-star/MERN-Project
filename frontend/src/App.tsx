@@ -9,6 +9,7 @@ import { Container } from "react-bootstrap";
 import NotesPage from "./pages/NotesPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import styles from "./styles/App.module.css";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
@@ -47,7 +48,7 @@ function App() {
         </>
       </Container> */}
 
-        <Container>
+        <Container className={styles.pageContainer}>
           <Routes>
             <Route
               path="/"

@@ -1,3 +1,4 @@
+import { UnauthorizedError } from "../errors/http_errors";
 import { Note } from "../models/notes";
 import { User } from "../models/users";
 
@@ -8,7 +9,19 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
   } else {
     const errorBody = await response.json();
     const errorMessage = errorBody.error;
-    throw new Error(errorMessage);
+
+    if (response.status === 401) {
+      throw new UnauthorizedError(errorMessage);
+    } else if (response.status === 409) {
+      throw new Error(errorMessage);
+    } else {
+      throw new Error(
+        "Request failed with status: " +
+          response.status +
+          " message: " +
+          errorMessage
+      );
+    }
   }
 }
 
